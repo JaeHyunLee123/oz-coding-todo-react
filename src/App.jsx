@@ -5,8 +5,10 @@ import { useState } from "react";
 import "./App.css";
 
 /**
- * @typedef {import("./types").Todo} Todo
- *
+ * @typedef {Object} Todo
+ * @property {number} id
+ * @property {string} content
+ * @property {boolean} isComplete
  */
 
 function App() {
