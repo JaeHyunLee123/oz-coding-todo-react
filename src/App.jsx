@@ -18,9 +18,12 @@ function App() {
 
   return (
     <>
+      <h1>Oz TODO React</h1>
+
       <TodoList todoList={todoList} setTodoList={setTodoList} />
       <hr />
       <TodoInput todoList={todoList} setTodoList={setTodoList} />
+      <h3>&copy; 이재현</h3>
     </>
   );
 }
