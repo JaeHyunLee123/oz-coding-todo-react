@@ -92,20 +92,30 @@ function TodoList({ todoList, setTodoList }) {
  */
 function Todo({ todo, setTodoList }) {
   const [inputValue, setInputValue] = useState("");
+  const [isModifyStatus, setIsModifyStatus] = useState(false);
+
   return (
     <li>
       {todo.content}
-      <input
-        value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
-      />
+      {isModifyStatus ? (
+        <input
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
+        />
+      ) : null}
+
       <button
         onClick={() => {
-          setTodoList((prev) =>
-            prev.map((el) =>
-              el.id === todo.id ? { ...el, content: inputValue } : el
-            )
-          );
+          if (isModifyStatus) {
+            setTodoList((prev) =>
+              prev.map((el) =>
+                el.id === todo.id ? { ...el, content: inputValue } : el
+              )
+            );
+            setIsModifyStatus(false);
+          } else {
+            setIsModifyStatus(true);
+          }
         }}
       >
         수정
