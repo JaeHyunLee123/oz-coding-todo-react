@@ -41,6 +41,44 @@
   color: #888;
 }
 
-.color-green {
-  color: green;
+.todo-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-list__todo {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.todo__content {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.todo__content--complete {
+  text-decoration: line-through;
+}
+
+.todo__button--modify {
+  border: 1px solid green;
+}
+
+.todo__button--remove {
+  border: 1px solid red;
+}
+
+.todo__complete-checkbox {
+  width: 18px;
+  height: 18px;
 }

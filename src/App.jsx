@@ -44,7 +44,7 @@ function TodoInput({ todoList, setTodoList }) {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <>
+    <div className="todo-input">
       <input
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
@@ -59,7 +59,7 @@ function TodoInput({ todoList, setTodoList }) {
       >
         추가하기
       </button>
-    </>
+    </div>
   );
 }
 
@@ -76,7 +76,7 @@ function TodoInput({ todoList, setTodoList }) {
  */
 function TodoList({ todoList, setTodoList }) {
   return (
-    <ul>
+    <ul className="todo-list">
       {todoList.map((todo) => (
         <Todo key={todo.id} todo={todo} setTodoList={setTodoList} />
       ))}
@@ -100,8 +100,27 @@ function Todo({ todo, setTodoList }) {
   const [isModifyStatus, setIsModifyStatus] = useState(false);
 
   return (
-    <li className={`${todo.isComplete ? "color-green" : ""}`}>
-      {todo.content}
+    <li className={`todo-list__todo `}>
+      <input
+        className="todo__complete-checkbox"
+        type="checkbox"
+        checked={todo.isComplete}
+        onClick={() => {
+          setTodoList((prev) =>
+            prev.map((el) =>
+              el.id === todo.id ? { ...el, isComplete: !todo.isComplete } : el
+            )
+          );
+        }}
+      ></input>
+      <span
+        className={`todo__content ${
+          todo.isComplete ? "todo__content--complete" : ""
+        }`}
+      >
+        {todo.content}
+      </span>
+
       {isModifyStatus ? (
         <input
           value={inputValue}
@@ -110,6 +129,7 @@ function Todo({ todo, setTodoList }) {
       ) : null}
 
       <button
+        className="todo__button todo__button--modify"
         onClick={() => {
           if (isModifyStatus) {
             setTodoList((prev) =>
@@ -126,6 +146,7 @@ function Todo({ todo, setTodoList }) {
         수정
       </button>
       <button
+        className="todo__button todo__button--remove"
         onClick={() => {
           setTodoList((prev) => {
             return prev.filter((el) => el.id !== todo.id);
@@ -133,17 +154,6 @@ function Todo({ todo, setTodoList }) {
         }}
       >
         삭제
-      </button>
-      <button
-        onClick={() => {
-          setTodoList((prev) =>
-            prev.map((el) =>
-              el.id === todo.id ? { ...el, isComplete: !todo.isComplete } : el
-            )
-          );
-        }}
-      >
-        {todo.isComplete ? "미완" : "완료"}
       </button>
     </li>
   );
