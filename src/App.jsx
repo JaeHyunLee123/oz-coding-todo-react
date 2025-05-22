@@ -1,5 +1,13 @@
+/* eslint-disable react/prop-types */
+//@ts-check
+
 import { useState } from "react";
 import "./App.css";
+
+/**
+ * @typedef {import("./types").Todo} Todo
+ *
+ */
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -17,6 +25,16 @@ function App() {
   );
 }
 
+/**
+ * @typedef {Object} TodoInputProps
+ * @property {Array<Todo>} todoList
+ * @property {Function} setTodoList
+ */
+
+/**
+ *
+ * @param {TodoInputProps} props
+ */
 function TodoInput({ todoList, setTodoList }) {
   const [inputValue, setInputValue] = useState("");
 
@@ -40,6 +58,17 @@ function TodoInput({ todoList, setTodoList }) {
   );
 }
 
+/**
+ * @typedef {Object} TodoListProps
+ * @property {Array<Todo>} todoList
+ * @property {Function} setTodoList
+ */
+
+/**
+ *
+ * @param {TodoListProps} props
+ * @returns
+ */
 function TodoList({ todoList, setTodoList }) {
   return (
     <ul>
@@ -50,6 +79,17 @@ function TodoList({ todoList, setTodoList }) {
   );
 }
 
+/**
+ * @typedef {Object} TodoProps
+ * @property {Todo} todo
+ * @property {Function} setTodoList
+ */
+
+/**
+ *
+ * @param {TodoProps} props
+ * @returns
+ */
 function Todo({ todo, setTodoList }) {
   const [inputValue, setInputValue] = useState("");
   return (
