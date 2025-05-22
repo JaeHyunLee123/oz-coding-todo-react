@@ -11,9 +11,9 @@ import "./App.css";
 
 function App() {
   const [todoList, setTodoList] = useState([
-    { id: 0, content: "123" },
-    { id: 1, content: "코딩 공부하기" },
-    { id: 2, content: "잠 자기" },
+    { id: 0, content: "123", isComplete: false },
+    { id: 1, content: "코딩 공부하기", isComplete: false },
+    { id: 2, content: "잠 자기", isComplete: false },
   ]);
 
   return (
@@ -95,7 +95,7 @@ function Todo({ todo, setTodoList }) {
   const [isModifyStatus, setIsModifyStatus] = useState(false);
 
   return (
-    <li>
+    <li className={`${todo.isComplete ? "color-green" : ""}`}>
       {todo.content}
       {isModifyStatus ? (
         <input
@@ -128,6 +128,17 @@ function Todo({ todo, setTodoList }) {
         }}
       >
         삭제
+      </button>
+      <button
+        onClick={() => {
+          setTodoList((prev) =>
+            prev.map((el) =>
+              el.id === todo.id ? { ...el, isComplete: !todo.isComplete } : el
+            )
+          );
+        }}
+      >
+        {todo.isComplete ? "미완" : "완료"}
       </button>
     </li>
   );
